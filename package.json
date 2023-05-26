@@ -6,5 +6,11 @@
   ],
   "devDependencies": {
     "lerna": "^6.6.2"
+  },
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "clean": "lerna exec -- rimraf dist/",
+    "build": "lerna run build",
+    "test": "jest"
   }
 }
