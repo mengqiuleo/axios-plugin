@@ -1,6 +1,6 @@
 {
   "name": "@axios-plugin/timeout",
-  "version": "0.0.1-alpha.1",
+  "version": "0.0.1-alpha.2",
   "description": "@axios-plugin timeout",
   "author": "mengqiuleo",
   "homepage": "https://github.com/mengqiuleo/axios-study#README",
@@ -30,7 +30,7 @@
     "url": "https://github.com/mengqiuleo/axios-study/issues"
   },
   "dependencies": {
-    "@axios-plugin/core": "^0.0.1-alpha.1",
+    "@axios-plugin/core": "^0.0.1-alpha.2",
     "axios": "^1.4.0"
   },
   "devDependencies": {
