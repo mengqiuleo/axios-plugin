@@ -1,6 +1,7 @@
 {
   "name": "@axios-plugin/timeout",
   "version": "0.0.0",
+  "private": false,
   "description": "@axios-plugin timeout",
   "author": "mengqiuleo",
   "homepage": "https://github.com/mengqiuleo/axios-study#README",
