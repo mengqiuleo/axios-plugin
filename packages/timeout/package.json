@@ -1,7 +1,6 @@
 {
   "name": "@axios-plugin/timeout",
   "version": "0.0.1-alpha.0",
-  "private": false,
   "description": "@axios-plugin timeout",
   "author": "mengqiuleo",
   "homepage": "https://github.com/mengqiuleo/axios-study#README",
@@ -43,5 +42,6 @@
     "rollup-plugin-typescript2": "^0.34.1",
     "ts-jest": "^29.1.0",
     "typescript": "^5.0.4"
-  }
+  },
+  "gitHead": "bf0e512644756512d3d6732ed6ef8cd882ec5e5a"
 }
