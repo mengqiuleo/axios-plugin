@@ -1,25 +1,27 @@
 // @ts-ignore
 import { definePlugin, AxiosPlugin, pluginify } from "@axios-plugin/core";
-import { AxiosRequestConfig, AxiosInstance } from 'axios';
+import { AxiosInstance, AxiosRequestConfig } from 'axios';
 
-interface TimeoutPluginOptions {
+export interface TimeoutPluginOptions {
   timeout: number;
 }
 
-export class timeoutPlugin {
-  constructor(private options?: TimeoutPluginOptions) {
+export class TimeoutPlugin implements AxiosPlugin {
+  public options: TimeoutPluginOptions
+  constructor(options?: TimeoutPluginOptions) {
     this.options = options || { timeout: 2000 }
   }
 
-  public beforeCreate(config: AxiosRequestConfig) {
+  beforeCreate(config: AxiosRequestConfig) {
     if (this.options.timeout != null) {
       config.timeout = this.options.timeout;
     }
   }
 
-  public created(axios: AxiosInstance) {
+  // @ts-ignore
+  created(axiosInstance: AxiosInstance) {
     if (this.options.timeout != null) {
-      axios.interceptors.response.use(
+      axiosInstance.interceptors.response.use(
         (response) => response,
         (error) => {
           if (error.code === 'ECONNABORTED' && error.message.includes('timeout')) {

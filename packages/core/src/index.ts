@@ -1,8 +1,8 @@
 import { AxiosStatic, AxiosInstance, AxiosRequestConfig } from 'axios';
 
-export type beforeCreateHook = (config: AxiosRequestConfig, axios: AxiosStatic) => void;
+export type beforeCreateHook = (config?: AxiosRequestConfig, axios?: AxiosStatic) => void;
 
-export type createdHook = (config: AxiosRequestConfig, axios: AxiosInstance) => void;
+export type createdHook = (axios?: AxiosInstance, config?: AxiosRequestConfig) => void;
 
 export interface AxiosPlugin {
   beforeCreate?: beforeCreateHook;

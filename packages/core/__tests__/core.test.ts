@@ -50,7 +50,7 @@ describe('core test', () => {
       }
     
       // 可选 axios 实例化后创建
-      created(axiosConfig: AxiosRequestConfig, axiosInstance: AxiosInstance) {
+      created( axiosInstance: AxiosInstance, axiosConfig: AxiosRequestConfig) {
         console.log(axiosInstance);
         console.log(axiosConfig);
       }
@@ -83,7 +83,7 @@ describe('core test', () => {
       }
     
       // 可选 axios 实例化后创建
-      created(axiosConfig: AxiosRequestConfig, axiosInstance: AxiosInstance) {
+      created(axiosInstance: AxiosInstance, axiosConfig: AxiosRequestConfig) {
         console.log(axiosInstance);
         console.log(axiosConfig);
       }

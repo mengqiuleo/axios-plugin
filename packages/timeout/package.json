@@ -24,6 +24,7 @@
     "url": "git+https://github.com/mengqiuleo/axios-plugin.git"
   },
   "scripts": {
+    "dev": "rollup -c -w",
     "build": "rollup -c"
   },
   "bugs": {
@@ -35,6 +36,7 @@
   },
   "devDependencies": {
     "@types/jest": "^29.5.1",
+    "axios": "^1.4.0",
     "axios-mock-adapter": "^1.21.4",
     "jest": "^29.5.0",
     "rimraf": "^5.0.1",
