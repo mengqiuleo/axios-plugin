@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import Timeout from './components/Timeout.vue'
-
+// import Timeout from './components/Timeout.vue'
+import Interceptor from './components/Interceptor.vue'
 </script>
 
 <template>
   <div>
-    <timeout/>
+    <!-- <timeout/> -->
+    <Interceptor />
   </div>
 </template>
 

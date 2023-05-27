@@ -29,16 +29,13 @@ class Plugin {
   // 可选 axios 实例化前创建
   beforeCreate(axiosConfig, axiosStatic) {
     console.log(this.pluginConfig);
-
     console.log(axiosConfig);
-
     console.log(axiosStatic);
   }
 
   // 可选 axios 实例化后创建
   created(axiosInstance, axiosConfig) {
     console.log(axiosInstance);
-
     console.log(axiosConfig);
   }
 }
@@ -217,8 +214,8 @@ pluginify(axios.create())
 -  支持可更换请求库，eg: fetch、xhr
 -  开发自定义Plugin脚手架模板
 -  增强拦截器调度
-  -  处理拦截器失败的情况
-  -  拦截器同步执行、异步执行、并发执行、循环执行等情况
+     -  处理拦截器失败的情况
+     -  拦截器同步执行、异步执行、并发执行、循环执行等情况
 
 ## FAQ
 
