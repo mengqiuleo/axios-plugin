@@ -7,7 +7,9 @@ interface TimeoutPluginOptions {
 }
 
 export class timeoutPlugin {
-  constructor(private options: TimeoutPluginOptions) {}
+  constructor(private options?: TimeoutPluginOptions) {
+    this.options = options || { timeout: 2000 }
+  }
 
   public beforeCreate(config: AxiosRequestConfig) {
     if (this.options.timeout != null) {

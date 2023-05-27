@@ -13,6 +13,14 @@ describe('Timeout Plugin', () => {
     await expect(instance.get(url)).rejects.toThrowError(/timeout/);
   });
 
+  test('should timeout without param', async () => {
+    const url = '/timeout';
+    const mock = new MockAdapter(axios);
+    mock.onGet(url).timeout();
+    const instance = pluginify(axios.create()).use(new timeoutPlugin()).generate();
+    await expect(instance.get(url)).rejects.toThrowError(/timeout/);
+  });
+
   test('should not timeout before 1 second', async () => {
     const url = 'https://httpbin.org/delay/0.5';
     const mock = new MockAdapter(axios);
