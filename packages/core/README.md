@@ -1,7 +1,7 @@
 # @axios-plugin/core
 `@axios-plugin/core`是`@axios-plugin`的核心，它可以让 `axios` 成为基于插件的请求库，通过这种方式使得 `axios` 可以与我们自定义的拦截器功能进行解耦, 让它们更加容易组织和复用。
 
-`@axios-plugin`针对诸如 Token 的添加，失效处理，无感知更新、接口缓存、错误重试等常见业务场景，提供了解决方案。另外也是支持定制化的，当这些功能不满足你的需求时，可以通过[自定义插件](https://www.npmjs.com/package/@axios-plugin/core#PluginClass)的方式快速封装。
+`@axios-plugin`针对诸如 Token 的添加，失效处理，无感知更新、接口缓存、错误重试等常见业务场景，提供了解决方案。另外也是支持定制化的，当这些功能不满足你的需求时，可以通过[自定义插件](https://www.npmjs.com/package/@axios-plugin/core#自定义插件)的方式快速封装。
 
 
 我更希望将 `@axios-plugin` 称为一套 axios **请求层拦截器调度解决方案**，
@@ -213,12 +213,12 @@ pluginify(axios.create())
 ```
 
 ## TODO
-- [ ] 处理 ts 类型警告，而不是使用 @ts-ignore
-- [ ] 支持可更换请求库，eg: fetch、xhr
-- [ ] 开发自定义Plugin脚手架模板
-- [ ] 增强拦截器调度
-  - [ ] 处理拦截器失败的情况
-  - [ ] 拦截器同步执行、异步执行、并发执行、循环执行等情况
+-  处理 ts 类型警告，而不是使用 @ts-ignore
+-  支持可更换请求库，eg: fetch、xhr
+-  开发自定义Plugin脚手架模板
+-  增强拦截器调度
+  -  处理拦截器失败的情况
+  -  拦截器同步执行、异步执行、并发执行、循环执行等情况
 
 ## FAQ
 
@@ -241,7 +241,9 @@ pluginify(axios.create())
 
 ## 鸣谢
 [axios-pluginify](https://github.com/uioz/axios-pluginify)
+
 [设计一个可插拔的请求库?](https://juejin.cn/post/6960254713631604766#heading-14)
+
 [如何优雅的管理 HTTP 请求和响应拦截器](https://www.yuque.com/wangpingan/cute-frontend/ocl9ah)
 
 感谢各位前辈提供的思路和代码案例，特别感谢 [axios-pluginify](https://github.com/uioz/axios-pluginify) 前辈的代码实现方案！！！
