@@ -1,6 +1,6 @@
 {
   "name": "@axios-plugin/core",
-  "version": "0.0.1-alpha.3",
+  "version": "0.0.1",
   "description": "@axios-plugin/core 是 @axios-plugin 的核心，它可以让 axios 成为基于插件的请求库",
   "author": "mengqiuleo",
   "homepage": "https://github.com/mengqiuleo/axios-plugin#README",
