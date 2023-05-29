@@ -1,6 +1,6 @@
 {
   "name": "@axios-plugin/throttle",
-  "version": "0.0.1",
+  "version": "0.0.2-alpha.0",
   "description": "限制axios发送请求的频率",
   "author": "mengqiuleo",
   "homepage": "https://github.com/mengqiuleo/axios-plugin#README",
@@ -31,7 +31,7 @@
     "url": "https://github.com/mengqiuleo/axios-plugin/issues"
   },
   "dependencies": {
-    "@axios-plugin/core": "^0.0.2-alpha.0",
+    "@axios-plugin/core": "^0.0.2",
     "axios": "^1.4.0"
   },
   "devDependencies": {

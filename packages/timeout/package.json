@@ -1,6 +1,6 @@
 {
   "name": "@axios-plugin/timeout",
-  "version": "0.0.2-alpha.0",
+  "version": "0.0.2-alpha.1",
   "description": "当请求超时后，将抛出异常，可传入自定义超时时间",
   "author": "mengqiuleo",
   "homepage": "https://github.com/mengqiuleo/axios-plugin#README",
@@ -31,7 +31,7 @@
     "url": "https://github.com/mengqiuleo/axios-plugin/issues"
   },
   "dependencies": {
-    "@axios-plugin/core": "^0.0.2-alpha.0",
+    "@axios-plugin/core": "^0.0.2",
     "axios": "^1.4.0"
   },
   "devDependencies": {
