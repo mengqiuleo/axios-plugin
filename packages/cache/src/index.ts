@@ -3,14 +3,14 @@ import { AxiosPlugin } from "@axios-plugin/core"
 import { AxiosRequestConfig, AxiosInstance } from 'axios'
 import { setupCache, buildMemoryStorage, buildWebStorage } from 'axios-cache-interceptor'
 
-interface Options {
+export interface Options {
   cloneData?: boolean //用于指定是否克隆存储在缓存中的数据。默认情况下为false，即不进行克隆。
   cleanupInterval?: number //清理间隔：避免内存泄漏
   maxEntries?: number //用于指定缓存中最大条目数。如果超出这个数量，缓存将自动删除最旧的缓存项。如果设置为false，则不会限制缓存中的条目数。
 }
 
 export enum StorageType {
-  Memory = "Memory",
+  MemoryStorage = "MemoryStorage",
   LocalStorage = "LocalStorage",
   SessionStorage = "SessionStorage"
 }
@@ -36,7 +36,7 @@ export class CachePlugin implements AxiosPlugin {
   }
   
   created(axiosInstance?: AxiosInstance, config?: AxiosRequestConfig) {
-    if(this.memory === "Memory"){
+    if(this.memory === "MemoryStorage"){
       setupCache(axiosInstance, {
         storage: buildMemoryStorage(this.options.cloneData, this.options.cleanupInterval, this.options.maxEntries)
       })
