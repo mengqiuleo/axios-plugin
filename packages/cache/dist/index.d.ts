@@ -7,7 +7,7 @@ interface Options {
     maxEntries?: number;
 }
 declare enum StorageType {
-    Memory = "Memory",
+    MemoryStorage = "MemoryStorage",
     LocalStorage = "LocalStorage",
     SessionStorage = "SessionStorage"
 }
@@ -26,4 +26,4 @@ declare class CachePlugin implements AxiosPlugin {
     created(axiosInstance?: AxiosInstance, config?: AxiosRequestConfig): void;
 }
 
-export { CachePlugin, StorageType };
+export { CachePlugin, Options, StorageType };

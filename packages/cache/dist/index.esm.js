@@ -2,7 +2,7 @@ import { setupCache, buildMemoryStorage, buildWebStorage } from 'axios-cache-int
 
 var StorageType;
 (function (StorageType) {
-    StorageType["Memory"] = "Memory";
+    StorageType["MemoryStorage"] = "MemoryStorage";
     StorageType["LocalStorage"] = "LocalStorage";
     StorageType["SessionStorage"] = "SessionStorage";
 })(StorageType || (StorageType = {}));
@@ -26,7 +26,7 @@ class CachePlugin {
         }, options);
     }
     created(axiosInstance, config) {
-        if (this.memory === "Memory") {
+        if (this.memory === "MemoryStorage") {
             setupCache(axiosInstance, {
                 storage: buildMemoryStorage(this.options.cloneData, this.options.cleanupInterval, this.options.maxEntries)
             });

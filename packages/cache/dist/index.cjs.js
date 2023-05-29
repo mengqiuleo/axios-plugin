@@ -4,7 +4,7 @@ var axiosCacheInterceptor = require('axios-cache-interceptor');
 
 exports.StorageType = void 0;
 (function (StorageType) {
-    StorageType["Memory"] = "Memory";
+    StorageType["MemoryStorage"] = "MemoryStorage";
     StorageType["LocalStorage"] = "LocalStorage";
     StorageType["SessionStorage"] = "SessionStorage";
 })(exports.StorageType || (exports.StorageType = {}));
@@ -28,7 +28,7 @@ class CachePlugin {
         }, options);
     }
     created(axiosInstance, config) {
-        if (this.memory === "Memory") {
+        if (this.memory === "MemoryStorage") {
             axiosCacheInterceptor.setupCache(axiosInstance, {
                 storage: axiosCacheInterceptor.buildMemoryStorage(this.options.cloneData, this.options.cleanupInterval, this.options.maxEntries)
             });
