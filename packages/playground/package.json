@@ -13,6 +13,7 @@
     "@axios-plugin/cache": "^0.0.1",
     "@axios-plugin/core": "^0.0.2-alpha.0",
     "@axios-plugin/interceptor": "^0.0.1",
+    "@axios-plugin/retry": "^0.0.1",
     "@axios-plugin/timeout": "^0.0.2-alpha.0",
     "axios": "^1.2.0-alpha.1",
     "vue": "^3.2.47"

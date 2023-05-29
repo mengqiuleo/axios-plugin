@@ -1,16 +1,18 @@
 <script setup lang="ts">
 // import Timeout from './components/Timeout.vue'
 // import Interceptor from './components/Interceptor.vue'
-import Cache from './components/Cache.vue'
+// import Cache from './components/Cache.vue'
+import Retry from './components/Retry.vue'
 </script>
 
 <template>
   <div>
     <!-- <timeout/> -->
     <!-- <Interceptor /> -->
-    <Suspense>
+    <!-- <Suspense>
       <Cache />
-    </Suspense>
+    </Suspense> -->
+    <Retry/>
   </div>
 </template>
 
