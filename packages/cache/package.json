@@ -1,6 +1,6 @@
 {
   "name": "@axios-plugin/cache",
-  "version": "0.0.2-alpha.0",
+  "version": "0.0.3",
   "description": "将请求结果存储在可配置的存储中，以防止不需要的网络请求",
   "author": "mengqiuleo",
   "homepage": "https://github.com/mengqiuleo/axios-plugin#README",
@@ -48,5 +48,6 @@
     "rollup-plugin-typescript2": "^0.34.1",
     "ts-jest": "^29.1.0",
     "typescript": "^5.0.4"
-  }
+  },
+  "gitHead": "4a2a373797f13f02f4bf79a53ab2214bb6ea8b39"
 }
