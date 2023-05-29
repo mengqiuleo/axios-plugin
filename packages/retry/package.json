@@ -1,6 +1,6 @@
 {
   "name": "@axios-plugin/retry",
-  "version": "0.0.4",
+  "version": "0.0.5-alpha.0",
   "description": "拦截失败的请求并在可能的情况下进行重试",
   "author": "mengqiuleo",
   "homepage": "https://github.com/mengqiuleo/axios-plugin#README",

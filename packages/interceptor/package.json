@@ -1,6 +1,6 @@
 {
   "name": "@axios-plugin/interceptor",
-  "version": "0.0.4",
+  "version": "0.0.5-alpha.0",
   "description": "对各种响应状态码进行拦截, 可通过传入参数进行覆盖",
   "author": "mengqiuleo",
   "homepage": "https://github.com/mengqiuleo/axios-plugin#README",
