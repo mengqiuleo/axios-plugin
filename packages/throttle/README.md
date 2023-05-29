@@ -18,7 +18,7 @@ axiosInstance =
 ## 参数
 ```js
 new ThrottlePlugin() //默认是 500ms 内，不会重发请求
-new ThrottlePlugin({ maxTime: 1000 })
+new ThrottlePlugin({ maxTime: 1000 }) // 1s
 ```
 
 ## 注意
