@@ -2,7 +2,8 @@
 // import Timeout from './components/Timeout.vue'
 // import Interceptor from './components/Interceptor.vue'
 // import Cache from './components/Cache.vue'
-import Retry from './components/Retry.vue'
+// import Retry from './components/Retry.vue'
+import Throttle from './components/Throttle.vue'
 </script>
 
 <template>
@@ -12,7 +13,11 @@ import Retry from './components/Retry.vue'
     <!-- <Suspense>
       <Cache />
     </Suspense> -->
-    <Retry/>
+    <!-- <Retry/> -->
+    <Suspense>
+      <Throttle />
+    </Suspense>
+
   </div>
 </template>
 
