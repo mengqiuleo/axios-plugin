@@ -1,12 +1,16 @@
 <script setup lang="ts">
 // import Timeout from './components/Timeout.vue'
-import Interceptor from './components/Interceptor.vue'
+// import Interceptor from './components/Interceptor.vue'
+import Cache from './components/Cache.vue'
 </script>
 
 <template>
   <div>
     <!-- <timeout/> -->
-    <Interceptor />
+    <!-- <Interceptor /> -->
+    <Suspense>
+      <Cache />
+    </Suspense>
   </div>
 </template>
 
