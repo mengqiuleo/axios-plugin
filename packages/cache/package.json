@@ -1,6 +1,6 @@
 {
   "name": "@axios-plugin/cache",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "将请求结果存储在可配置的存储中，以防止不需要的网络请求",
   "author": "mengqiuleo",
   "homepage": "https://github.com/mengqiuleo/axios-plugin#README",

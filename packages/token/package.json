@@ -1,6 +1,6 @@
 {
   "name": "@axios-plugin/token",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": "mengqiuleo",
   "description": "为axios增加token",
   "homepage": "https://github.com/mengqiuleo/axios-plugin#README",

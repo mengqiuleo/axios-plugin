@@ -1,6 +1,6 @@
 {
   "name": "@axios-plugin/download",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "对文件统一使用二进制方式下载",
   "author": "mengqiuleo",
   "homepage": "https://github.com/mengqiuleo/axios-plugin#README",
