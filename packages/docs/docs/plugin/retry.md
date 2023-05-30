@@ -1,4 +1,4 @@
-# @axios-plugin/retry
+# @axios-plugin/retry <Badge type="tip" text="^0.0.5" />
 
 拦截失败的请求并在可能的情况下进行重试
 

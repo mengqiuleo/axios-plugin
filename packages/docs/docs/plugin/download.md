@@ -1,4 +1,4 @@
-# @axios-plugin/download
+# @axios-plugin/download <Badge type="tip" text="^0.0.5" />
 
 使用 二进制blob 的方式对文件进行下载
 

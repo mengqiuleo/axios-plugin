@@ -6,7 +6,7 @@ export default {
   title: 'axios plugin',
   description: '一套 axios 请求层拦截器调度解决方案，将 axios 插件化，实现与自定义拦截器的解耦',
   lang: 'cn-ZH',
-  base: '/',
+  base: '/axios-plugin/',
   lastUpdated: true,
   themeConfig: {
     // theme-level options

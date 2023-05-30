@@ -1,4 +1,4 @@
-# @axios-plugin/core
+# @axios-plugin/core <Badge type="tip" text="^0.0.5" />
 `@axios-plugin/core`是`@axios-plugin`的核心，它可以让 `axios` 成为基于插件的请求库，通过这种方式使得 `axios` 可以与我们自定义的拦截器功能进行解耦, 让它们更加容易组织和复用。
 
 ::: tip

@@ -1,4 +1,4 @@
-# @axios-plugin/throttle
+# @axios-plugin/throttle <Badge type="tip" text="^0.0.5" />
 
 限制axios发送请求的频率，避免过多的请求对服务器造成负担或浪费带宽资源。
 

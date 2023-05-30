@@ -1,4 +1,4 @@
-# @axios-plugin/token
+# @axios-plugin/token <Badge type="tip" text="^0.0.5" />
 
 为 axios 增加 token
 

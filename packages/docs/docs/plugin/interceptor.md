@@ -1,4 +1,4 @@
-# @axios-plugin/interceptor
+# @axios-plugin/interceptor <Badge type="tip" text="^0.0.5" />
 
 对各种响应状态码进行拦截, 可通过传入参数进行覆盖
 

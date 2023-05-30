@@ -1,4 +1,4 @@
-# @axios-plugin/timeout
+# @axios-plugin/timeout <Badge type="tip" text="^0.0.5" />
 
 当请求超时后，将抛出异常，可传入自定义超时时间
 

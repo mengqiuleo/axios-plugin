@@ -1,4 +1,4 @@
-# @axios-plugin/cache
+# @axios-plugin/cache <Badge type="tip" text="^0.0.5" />
 
 将请求结果存储在可配置的存储中，以防止不需要的网络请求。
 
