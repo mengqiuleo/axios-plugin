@@ -1,0 +1,29 @@
+{
+  "name": "docs",
+  "version": "0.0.1",
+  "private": true,
+  "description": "axios plugin docs",
+  "author": "mengqiuleo",
+  "homepage": "https://github.com/mengqiuleo/axios-study#readme",
+  "license": "MIT",
+  "main": "lib/docs.js",
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mengqiuleo/axios-study.git"
+  },
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:serve": "vitepress serve docs"
+  },
+  "bugs": {
+    "url": "https://github.com/mengqiuleo/axios-study/issues"
+  },
+  "devDependencies": {
+    "vitepress": "^1.0.0-beta.1",
+    "vue": "^3.3.4"
+  }
+}
