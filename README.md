@@ -9,7 +9,7 @@
 它将项目中自定义封装的请求、响应拦截器进行解构，封装成一个插件，并且通过 `@axios-plugin/core` 将 axios 插件化，
 之后就可以在插件化之后的 axios 实例身上挂载各种功能插件。
 
-`@axios-plugin`针对诸如 Token 的添加，接口缓存、错误重试、响应状态码处理、超时处理等常见业务场景，提供了解决方案。另外当这些功能不满足你的需求时，可以通过[自定义插件](https://www.npmjs.com/package/@axios-plugin/core#自定义插件)的方式快速封装。
+`@axios-plugin`针对诸如 Token 的添加，接口缓存、错误重试、响应状态码处理、超时处理等常见业务场景，提供了解决方案。另外当这些功能不满足你的需求时，可以通过[自定义插件](https://github.com/mengqiuleo/axios-plugin#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8F%92%E4%BB%B6)的方式快速封装。
 
 
 通过插件化的开发，可以实现所有**拦截器职责单一**、方便维护、并**统一维护**和**自动调度**，避免实际业务中对每个项目的重复封装。
@@ -29,13 +29,13 @@
 - 灵活性高
 
 ## 已经支持的插件
-- [@axios-plugin/cache](../plugin/cache.md)
-- [@axios-plugin/interceptor](../plugin/interceptor.md)
-- [@axios-plugin/retry](../plugin/retry.md)
-- [@axios-plugin/throttle](../plugin/throttle.md)
-- [@axios-plugin/timeout](../plugin/timeout.md)
-- [@axios-plugin/download](../plugin/download.md)
-- [@axios-plugin/token](../plugin/token.md)
+- [@axios-plugin/cache](/packages/cache/README.md)
+- [@axios-plugin/interceptor](/packages/interceptor/README.md)
+- [@axios-plugin/retry](/packages/retry/README.md)
+- [@axios-plugin/throttle](/packages/throttle/README.md)
+- [@axios-plugin/timeout](/packages/timeout/README.md)
+- [@axios-plugin/download](/packages/download/README.md)
+- [@axios-plugin/token](/packages/token/README.md)
 
 
 ## 安装
