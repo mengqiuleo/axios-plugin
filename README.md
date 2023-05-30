@@ -1,14 +1,42 @@
-# @axios-plugin/core
+# @axios-plugin
 
 ![logo.svg](./assets/logo.svg)
 
-`@axios-plugin/core`是`@axios-plugin`的核心，它可以让 `axios` 成为基于插件的请求库，通过这种方式使得 `axios` 可以与我们自定义的拦截器功能进行解耦, 让它们更加容易组织和复用。
+## 概述
 
-`@axios-plugin`针对诸如 Token 的添加，失效处理，无感知更新、接口缓存、错误重试等常见业务场景，提供了解决方案。另外也是支持定制化的，当这些功能不满足你的需求时，可以通过[自定义插件](https://www.npmjs.com/package/@axios-plugin/core#自定义插件)的方式快速封装。
+我希望将 `@axios-plugin` 称为一套 axios **请求层拦截器调度解决方案**。
+
+它将项目中自定义封装的请求、响应拦截器进行解构，封装成一个插件，并且通过 `@axios-plugin/core` 将 axios 插件化，
+之后就可以在插件化之后的 axios 实例身上挂载各种功能插件。
+
+`@axios-plugin`针对诸如 Token 的添加，接口缓存、错误重试、响应状态码处理、超时处理等常见业务场景，提供了解决方案。另外当这些功能不满足你的需求时，可以通过[自定义插件](https://www.npmjs.com/package/@axios-plugin/core#自定义插件)的方式快速封装。
 
 
-我更希望将 `@axios-plugin` 称为一套 axios **请求层拦截器调度解决方案**，
-目的是为了实现所有**拦截器职责单一**、方便维护、并**统一维护**和**自动调度**，避免实际业务中对每个项目的重复封装。
+通过插件化的开发，可以实现所有**拦截器职责单一**、方便维护、并**统一维护**和**自动调度**，避免实际业务中对每个项目的重复封装。
+
+
+## 如何运行的
+在 `@axios-plugin/core` 内部，实现了一个 `AxiosPluginify` 类，并且通过向外暴露的 `pluginify` 函数，返回一个 `AxiosPluginify` 类的实例。
+在 `AxiosPluginify` 类身上，有 `use` 方法，实现将传入的插件收集到数组中，以便挂载到 `axios` 实例上。
+另外，该类还有 `generate` 方法，它会按照传入的插件顺序，依次将这些插件挂载到 传入的 `axios` 实例上，最后返回新的 `axios` 实例。
+
+## 特性
+- 按需加载
+- 对插件解构，降低代码耦合度
+- 提供常见拦截器插件
+- 支持自定义插件
+- 包装已有类库
+- 灵活性高
+
+## 已经支持的插件
+- [@axios-plugin/cache](../plugin/cache.md)
+- [@axios-plugin/interceptor](../plugin/interceptor.md)
+- [@axios-plugin/retry](../plugin/retry.md)
+- [@axios-plugin/throttle](../plugin/throttle.md)
+- [@axios-plugin/timeout](../plugin/timeout.md)
+- [@axios-plugin/download](../plugin/download.md)
+- [@axios-plugin/token](../plugin/token.md)
+
 
 ## 安装
 ```bash
