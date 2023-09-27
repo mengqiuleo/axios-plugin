@@ -1,6 +1,6 @@
 # 自定义插件
 
-自定义插件有两种方式，一种是通过自定义Class，第二种是 definePlugin 函数
+自定义插件通过自定义Class
 
 ## API
 
@@ -29,28 +29,10 @@ class Plugin {
   }
 }
 
-const axiosInstance = pluginify(axios.create()).use(new Plugin()).generate();
+const axiosInstance = pluginify(axios).use(new Plugin()).generate();
 
 axiosInstance.get('/users');
 ```
-### definePlugin
-```js
-import axios from 'axios'
-import { pluginify, definePlugin } from "@axios-plugin/core"
-
-const axiosInstance = pluginify(axios.create())
-                        .use(
-                          definePlugin({
-                            apply() {},
-                            beforeCreate() {},
-                            created() {},
-                          })
-                        )
-                        .generate()
-```
-在这里 `apply` 替换了 `class` 中的 `construtcor`, 如果你使用 `typescript` 那么 `apply` 受到类型系统限制是必选的, 如果你忽略这个错误也不会有问题.
-
-另外 `definePlugin` 上面的钩子只能使用传统的函数不能是箭头函数因为在 `definePlugin` 内部显示绑定了 `this` 而箭头函数无法进行绑定.
 
 
 ## 包装已有类库
@@ -70,7 +52,7 @@ class MockAdapterPlugin {
   }
 }
 
-const axiosInstance = pluginify(axios.create())
+const axiosInstance = pluginify(axios)
   .use(new MockAdapterPlugin())
   .generate()
 
@@ -104,7 +86,7 @@ class ExtractResultPlugin {
   }
 }
 
-const axiosInstance = pluginify(axios.create())
+const axiosInstance = pluginify(axios)
   .use(new RequestWithToken('token'), new ExtractResultPlugin())
   .generate()
 

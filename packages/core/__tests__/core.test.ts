@@ -1,6 +1,6 @@
 import axios, { AxiosStatic,AxiosInstance, AxiosRequestConfig } from 'axios'
 import MockAdapter from 'axios-mock-adapter'
-import { pluginify, AxiosPlugin, definePlugin, DefinePlugin } from '../src/index'
+import { pluginify, AxiosPlugin } from '../src/index'
 
 const mock = new MockAdapter(axios)
 
@@ -19,21 +19,13 @@ describe('core test', () => {
   })
 
   test('pluginify basic test', async () => {
-    const axiosStatic = axios.create({
-      baseURL: ''
-    })
-
-    // TODO: fix type error
-    const axiosInstance = pluginify(axiosStatic as AxiosStatic).generate();
+    const axiosInstance = pluginify(axios).generate();
   
     const res = await axiosInstance.get('/users')
     expect(res.data.users).toEqual([{ id: 1, name: "John Smith" }])
   })
 
   test('a pluginClass function test', async () => {
-    const axiosStatic = axios.create({
-      baseURL: ''
-    })
 
     class Plugin implements AxiosPlugin {
       public pluginConfig:any = undefined
@@ -56,17 +48,13 @@ describe('core test', () => {
       }
     }
 
-    // TODO: fix type error
-    const axiosInstance = pluginify(axiosStatic as AxiosStatic).use(new Plugin()).generate();
+    const axiosInstance = pluginify(axios).use(new Plugin()).generate();
   
     const res = await axiosInstance.get('/users')
     expect(res.data.users).toEqual([{ id: 1, name: "John Smith" }])
   })
 
   test('some pluginClass function test', async () => {
-    const axiosStatic = axios.create({
-      baseURL: ''
-    })
 
     class Plugin implements AxiosPlugin {
       public pluginConfig:any = undefined
@@ -89,38 +77,12 @@ describe('core test', () => {
       }
     }
 
-    // TODO: fix type error
-    const axiosInstance1 = pluginify(axiosStatic as AxiosStatic).use(new Plugin(), new Plugin(), new Plugin()).generate();
-    const axiosInstance2 = pluginify(axiosStatic as AxiosStatic).use(new Plugin()).use(new Plugin()).use(new Plugin()).generate();
+    const axiosInstance1 = pluginify(axios).use(new Plugin(), new Plugin(), new Plugin()).generate();
+    const axiosInstance2 = pluginify(axios).use(new Plugin()).use(new Plugin()).use(new Plugin()).generate();
   
     const res1 = await axiosInstance1.get('/users')
     expect(res1.data.users).toEqual([{ id: 1, name: "John Smith" }])
     const res2 = await axiosInstance2.get('/users')
     expect(res2.data.users).toEqual([{ id: 1, name: "John Smith" }])
-  })
-
-  test('definePlugin test', async () => {
-    const axiosStatic = axios.create({
-      baseURL: ''
-    })
-
-    const plugin = definePlugin({
-      apply(pluginConfig) {
-        console.log(pluginConfig)
-      },
-      beforeCreate(axiosConfig: AxiosRequestConfig, axiosStatic: AxiosStatic) {
-        console.log(axiosConfig);
-        console.log(axiosStatic);
-      },
-      created(axiosConfig: AxiosRequestConfig, axiosInstance: AxiosInstance) {
-        console.log(axiosInstance);
-        console.log(axiosConfig);
-      }
-    } as DefinePlugin)
-
-    // TODO: fix type error
-    const axiosInstance = pluginify(axiosStatic as AxiosStatic).use(plugin as AxiosPlugin).generate()
-    const res = await axiosInstance.get('/users')
-    expect(res.data.users).toEqual([{ id: 1, name: "John Smith" }])
   })
 })

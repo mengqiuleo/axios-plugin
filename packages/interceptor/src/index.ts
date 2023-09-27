@@ -1,5 +1,5 @@
 // @ts-ignore
-import { definePlugin, AxiosPlugin, pluginify } from "@axios-plugin/core";
+import { AxiosPlugin, pluginify } from "@axios-plugin/core";
 import { AxiosInstance } from 'axios';
 
 export interface InterceptorPluginOptions {

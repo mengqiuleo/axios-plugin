@@ -44,25 +44,6 @@ const axiosInstance = pluginify(axios.create()).use(new Plugin()).generate();
 
 axiosInstance.get('/users');
 ```
-### definePlugin
-```js
-import axios from 'axios'
-import { pluginify, definePlugin } from "@axios-plugin/core"
-
-const axiosInstance = pluginify(axios.create())
-                        .use(
-                          definePlugin({
-                            apply() {},
-                            beforeCreate() {},
-                            created() {},
-                          })
-                        )
-                        .generate()
-```
-在这里 `apply` 替换了 `class` 中的 `construtcor`, 如果你使用 `typescript` 那么 `apply` 受到类型系统限制是必选的, 如果你忽略这个错误也不会有问题.
-
-另外 `definePlugin` 上面的钩子只能使用传统的函数不能是箭头函数因为在 `definePlugin` 内部显示绑定了 `this` 而箭头函数无法进行绑定.
-
 
 ## 包装已有类库
 
@@ -188,25 +169,6 @@ class Plugin {
   // optional
   created(axiosInstance, axiosRequestConfig) {}
 }
-```
-
-### definePlugin
-
-定义一个插件, 效果和普通插件一样, 这个函数可以让你获取到语法提示:
-
-```javascript
-import axios from 'axios'
-import { pluginify, definePlugin } from "@axios-plugin/core"
-
-pluginify(axios.create())
-  .use(
-    definePlugin({
-      apply() {},
-      beforeCreate() {},
-      created() {},
-    })
-  )
-  .generate(true)
 ```
 
 ## TODO

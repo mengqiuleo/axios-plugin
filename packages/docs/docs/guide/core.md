@@ -78,22 +78,3 @@ class Plugin {
   created(axiosInstance, axiosRequestConfig) {}
 }
 ```
-
-### definePlugin
-
-定义一个插件, 效果和普通插件一样, 这个函数可以让你获取到语法提示:
-
-```javascript
-import axios from 'axios'
-import { pluginify, definePlugin } from "@axios-plugin/core"
-
-pluginify(axios.create())
-  .use(
-    definePlugin({
-      apply() {},
-      beforeCreate() {},
-      created() {},
-    })
-  )
-  .generate(true)
-```

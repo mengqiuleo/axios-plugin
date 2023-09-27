@@ -9,32 +9,6 @@ export interface AxiosPlugin {
   created?: createdHook;
 }
 
-export interface DefinePlugin extends AxiosPlugin {
-  apply: (...args: Array<unknown>) => void;
-}
-
-export function definePlugin<T extends DefinePlugin>(
-  plugin: T
-): { this: T; new (...args: Parameters<T['apply']>): AxiosPlugin } {
-  return function pluginWrapper(
-    this: AxiosPlugin,
-    ...args: Parameters<typeof plugin['apply']>
-  ) {
-    debugger
-    if (typeof plugin.apply === 'function') {
-      console.log('plugin.apply', plugin.apply)
-      plugin.apply && plugin.apply.apply(this, args);
-    }
-
-    if (plugin.beforeCreate) {
-      this.beforeCreate = plugin.beforeCreate.bind(this);
-    }
-    if (plugin.created) {
-      this.created = plugin.created.bind(this);
-    }
-  } as any;
-}
-
 class AxiosPluginify {
   private beforeCreate: Array<beforeCreateHook> = [];
   private created: Array<createdHook> = [];
@@ -49,15 +23,12 @@ class AxiosPluginify {
       if (typeof plugin.beforeCreate === 'function') {
         this.beforeCreate.push(
           (config: AxiosRequestConfig, axios: AxiosStatic) =>
-            // @ts-ignore
             plugin.beforeCreate(config, axios)
         );
       }
 
       if (typeof plugin.created === 'function') {
-        // @ts-ignore
         this.created.push((axios: AxiosInstance, config: AxiosRequestConfig) =>
-          // @ts-ignore
           plugin.created(axios, config)
         );
       }
@@ -74,7 +45,6 @@ class AxiosPluginify {
     const axios = this.axiosStatic.create(this.config);
 
     for (const hook of this.created) {
-      // @ts-ignore
       hook(axios, this.config);
     }
 
@@ -88,7 +58,6 @@ class AxiosPluginify {
   destroy() {
     this.beforeCreate = [];
     this.created = [];
-    // @ts-ignore
     this.config = this.axiosStatic = null;
   }
 }

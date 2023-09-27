@@ -9,7 +9,7 @@ cleanUrls: true
 appearance: true
 hero:
   name: axios plugin
-  text: 高性能、小巧而强大
+  text: 可插拔
   tagline: 一套 axios 请求层拦截器调度解决方案，将 axios 插件化，实现与自定义拦截器的解耦
   image:
     src: /logo.svg

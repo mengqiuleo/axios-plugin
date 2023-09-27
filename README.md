@@ -44,7 +44,7 @@ yarn add @axios-plugin/core
 ```
 
 ## 自定义插件
-自定义插件有两种方式，一种是通过自定义Class，第二种是 definePlugin 函数
+自定义 Class 实现
 
 ### PluginClass
 ```javascript
@@ -71,49 +71,29 @@ class Plugin {
   }
 }
 
-const axiosInstance = pluginify(axios.create()).use(new Plugin()).generate();
+const axiosInstance = pluginify(axios).use(new Plugin()).generate();
 
 axiosInstance.get('/users');
 ```
-### definePlugin
-```js
-import axios from 'axios'
-import { pluginify, definePlugin } from "@axios-plugin/core"
-
-const axiosInstance = pluginify(axios.create())
-                        .use(
-                          definePlugin({
-                            apply() {},
-                            beforeCreate() {},
-                            created() {},
-                          })
-                        )
-                        .generate()
-```
-在这里 `apply` 替换了 `class` 中的 `construtcor`, 如果你使用 `typescript` 那么 `apply` 受到类型系统限制是必选的, 如果你忽略这个错误也不会有问题.
-
-另外 `definePlugin` 上面的钩子只能使用传统的函数不能是箭头函数因为在 `definePlugin` 内部显示绑定了 `this` 而箭头函数无法进行绑定.
-
 
 ## 包装已有类库
 
 ```javascript
 import axios from 'axios'
 import { pluginify } from "@axios-plugin/core"
-import MockAdapter from 'axios-mock-adapter'
+import axiosRetry, { IAxiosRetryConfig } from 'axios-retry';
 
-class MockAdapterPlugin {
-  created(axiosInstance) {
-    const mock = new MockAdapter(axiosInstance)
+export class RetryPlugin implements AxiosPlugin {
+  constructor(public config?: IAxiosRetryConfig) {}
 
-    mock.onGet('/uesrs').reply(200, {
-      msg: 'hello world'
-    })
+  created(axios: AxiosInstance) {
+    axiosRetry(axios, this.config)
   }
 }
 
-const axiosInstance = pluginify(axios.create())
-  .use(new MockAdapterPlugin())
+
+const axiosInstance = pluginify(axios)
+  .use(new RetryPlugin())
   .generate()
 
 axiosInstance.get('/users')
@@ -146,7 +126,7 @@ class ExtractResultPlugin {
   }
 }
 
-const axiosInstance = pluginify(axios.create())
+const axiosInstance = pluginify(axios)
   .use(new RequestWithToken('token'), new ExtractResultPlugin())
   .generate()
 
@@ -159,11 +139,11 @@ axiosInstance.get('/users')
 #### constructor
 
 ```javascript
-pluginify(axios.create())
+pluginify(axios)
 ```
 
 ```javascript
-pluginify(axios.create(), {
+pluginify(axios, {
   // 交由 axios.create() 所使用的配置, 可以被插件重写
 });
 ```
@@ -171,7 +151,7 @@ pluginify(axios.create(), {
 #### use
 
 ```javascript
-const axiosPluginify = pluginify(axios.create())
+const axiosPluginify = pluginify(axios)
 
 axiosPluginify.use(new Plugin(), new Plugin(), new Plugin())
 ```
@@ -187,7 +167,7 @@ axiosPluginify.use(new Plugin()).use(new Plugin()).use(new Plugin())
 创建 `axios` 实例并结合 `use` 方法所给定的插件.
 
 ```javascript
-const axiosPluginify = pluginify(axios.create())
+const axiosPluginify = pluginify(axios)
 
 const axiosInstance = axiosPluginify.use(new Plugin()).generate()
 ```
@@ -195,7 +175,7 @@ const axiosInstance = axiosPluginify.use(new Plugin()).generate()
 通过向 `generate` 传入 `true` 表示生成 `axiosInstance` 后销毁 `pluginify` 内部保存的引用, 避免内存泄漏.
 
 ```javascript
-const axiosPluginify = pluginify(axios.create());
+const axiosPluginify = pluginify(axios);
 
 const axiosInstance = axiosPluginify.use(new Plugin()).generate(true)
 ```
@@ -221,32 +201,14 @@ class Plugin {
 }
 ```
 
-### definePlugin
-
-定义一个插件, 效果和普通插件一样, 这个函数可以让你获取到语法提示:
-
-```javascript
-import axios from 'axios'
-import { pluginify, definePlugin } from "@axios-plugin/core"
-
-pluginify(axios.create())
-  .use(
-    definePlugin({
-      apply() {},
-      beforeCreate() {},
-      created() {},
-    })
-  )
-  .generate(true)
-```
-
 ## TODO
 -  处理 ts 类型警告，而不是使用 @ts-ignore
 -  支持可更换请求库，eg: fetch、xhr
 -  开发自定义Plugin脚手架模板
 -  增强拦截器调度
      -  处理拦截器失败的情况
-     -  拦截器同步执行、异步执行、并发执行、循环执行等情况
+     -  参考webpack插件机制tapable
+     -  在插件中传递上下文ctx
 
 ## FAQ
 

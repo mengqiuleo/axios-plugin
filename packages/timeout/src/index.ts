@@ -1,5 +1,5 @@
 // @ts-ignore
-import { definePlugin, AxiosPlugin, pluginify } from "@axios-plugin/core";
+import { AxiosPlugin, pluginify } from "@axios-plugin/core";
 import { AxiosInstance, AxiosRequestConfig } from 'axios';
 
 export interface TimeoutPluginOptions {
