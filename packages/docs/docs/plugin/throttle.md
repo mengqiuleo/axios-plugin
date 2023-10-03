@@ -12,7 +12,7 @@ yarn add @axios-plugin/throttle
 import { ThrottlePlugin } from '@axios-plugin/throttle'
 
 axiosInstance = 
-  pluginify(axios.create() as AxiosStatic)
+  pluginify(axios)
     .use(new ThrottlePlugin({ maxTime: 1000 })
     .generate()
 ```

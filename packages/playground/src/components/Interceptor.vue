@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { pluginify } from '@axios-plugin/core'
 import { InterceptorPlugin } from '@axios-plugin/interceptor'
-import axios, { AxiosStatic } from 'axios'
+import axios from 'axios'
 
-const axiosInstance = pluginify(axios.create() as AxiosStatic).use(new InterceptorPlugin()).generate()
+const axiosInstance = pluginify(axios).use(new InterceptorPlugin()).generate()
 await axiosInstance.get('http://localhost:3000/users').catch(res => {
   console.log('interceptor error', res.message)
 })

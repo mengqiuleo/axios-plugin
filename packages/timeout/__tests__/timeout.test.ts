@@ -1,7 +1,6 @@
-import axios, { AxiosStatic } from 'axios'
+import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
-// @ts-ignore
-import { pluginify, AxiosPlugin } from "@axios-plugin/core";
+import { pluginify } from "@axios-plugin/core";
 import { TimeoutPlugin } from "../src/index"
 
 describe('Timeout Plugin', () => {
@@ -9,7 +8,7 @@ describe('Timeout Plugin', () => {
     const url = '/timeout';
     const mock = new MockAdapter(axios);
     mock.onGet(url).timeout();
-    const instance = pluginify(axios.create() as AxiosStatic).use(new TimeoutPlugin({ timeout: 1000 }) as unknown as AxiosPlugin).generate();
+    const instance = pluginify(axios).use(new TimeoutPlugin({ timeout: 1000 })).generate();
     await expect(instance.get(url)).rejects.toThrowError(/timeout/);
   });
 
@@ -17,7 +16,7 @@ describe('Timeout Plugin', () => {
     const url = '/timeout';
     const mock = new MockAdapter(axios);
     mock.onGet(url).timeout();
-    const instance = pluginify(axios.create() as AxiosStatic).use(new TimeoutPlugin() as unknown as AxiosPlugin).generate();
+    const instance = pluginify(axios).use(new TimeoutPlugin()).generate();
     await expect(instance.get(url)).rejects.toThrowError(/timeout/);
   });
 
@@ -26,7 +25,7 @@ describe('Timeout Plugin', () => {
     const mock = new MockAdapter(axios);
     mock.onGet(url).reply(200, { data: 'success' });
 
-    const instance = pluginify(axios.create() as AxiosStatic).use(new TimeoutPlugin({ timeout: 1000 }) as unknown as AxiosPlugin).generate();
+    const instance = pluginify(axios).use(new TimeoutPlugin({ timeout: 1000 })).generate();
     const response = await instance.get(url);
 
     expect(response.data.data).toEqual('success');

@@ -1,4 +1,4 @@
-import axios, { AxiosStatic, AxiosInstance } from 'axios'
+import axios, { AxiosInstance } from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 import { RetryPlugin } from '../src/index'
 import { pluginify } from "@axios-plugin/core"
@@ -11,7 +11,7 @@ describe('retry plugin', () => {
     mock = new MockAdapter(axios)
 
     axiosInstance = 
-      pluginify(axios.create() as AxiosStatic).use(new RetryPlugin({ retries: 2 })).generate()
+      pluginify(axios).use(new RetryPlugin({ retries: 2 })).generate()
   })
 
   afterEach(() => {

@@ -21,7 +21,7 @@ new InterceptorPlugin(options)
 
 ```ts
 import { InterceptorPlugin, InterceptorPluginOptions } from "@axios-plugin/interceptor"
-const instance = pluginify(axios.create() as AxiosStatic).use(new InterceptorPlugin(options)).generate()
+const instance = pluginify(axios).use(new InterceptorPlugin(options)).generate()
 await instance.get('/api/users').catch(res => { //这里对 拦截器抛出的promise。reject进行重写，我们可以通过 res.message 获取传入的自定义错误消息
       console.log('res.message', res.message) //token过期, 请重新登录
     })

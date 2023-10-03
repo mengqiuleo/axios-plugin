@@ -2,6 +2,8 @@
 
 当请求超时后，将抛出异常，可传入自定义超时时间
 
+感觉有点鸡肋，axios 直接通过 timeout 配置即可，这个插件没必要
+
 ## 安装
 ```bash
 yarn add @axios-plugin/timeout
@@ -19,7 +21,7 @@ import axios from 'axios'
 import { pluginify } from "@axios-plugin/core"
 import { timeoutPlugin } from '@axios-plugin/timeout'
 
-const instance = pluginify(axios.create())
+const instance = pluginify(axios)
                   .use(new TimeoutPlugin({ timeout: 1000 }))
                   .generate()
 ```

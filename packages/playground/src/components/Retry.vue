@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { pluginify } from '@axios-plugin/core'
 import { RetryPlugin } from '@axios-plugin/retry'
-import axios, { AxiosStatic } from 'axios'
+import axios from 'axios'
 
-const axiosInstance = pluginify( axios.create() as AxiosStatic).use(new RetryPlugin()).generate()
+const axiosInstance = pluginify( axios).use(new RetryPlugin()).generate()
 await axiosInstance.get('http://localhost:3000/posts')
 
 

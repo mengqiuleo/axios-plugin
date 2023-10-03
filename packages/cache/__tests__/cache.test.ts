@@ -1,6 +1,6 @@
-import axios, { AxiosStatic, AxiosInstance } from 'axios'
+import axios, { AxiosInstance } from 'axios'
 import MockAdapter from 'axios-mock-adapter'
-import { CachePlugin, StorageType, Options } from '../src/index'
+import { CachePlugin, StorageType } from '../src/index'
 import { pluginify } from "@axios-plugin/core"
 
 // TODO: axios-extensions 自己的错误，已提pr
@@ -13,11 +13,10 @@ describe('CachePlugin', () => {
   beforeEach(() => {
     mock = new MockAdapter(axios)
 
-    // @ts-ignore
-    const options: Options = { cloneData: false, cleanupInterval: 36000, maxEntries: 300 }
+    // const options: Options = { cloneData: false, cleanupInterval: 36000, maxEntries: 300 }
 
     axiosInstance = 
-      pluginify(axios.create() as AxiosStatic).use(new CachePlugin(StorageType.MemoryStorage)).generate()
+      pluginify(axios).use(new CachePlugin(StorageType.MemoryStorage)).generate()
   })
 
   afterEach(() => {

@@ -12,7 +12,7 @@ yarn add @axios-plugin/token
 import { TokenPlugin } from '@axios-plugin/throttle'
 
 axiosInstance = 
-  pluginify(axios.create() as AxiosStatic).use(new TokenPlugin("tokenPlugin").generate()
+  pluginify(axios).use(new TokenPlugin("tokenPlugin").generate()
 ```
 
 ## 参数

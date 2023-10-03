@@ -17,7 +17,7 @@ new CachePlugin(type, options)
 ### Web Storage API
 ```js
 import { CachePlugin, StorageType } from '@axios-plugin/cache'
-const axiosInstance = pluginify(axios.create() as AxiosStatic).use(new CachePlugin(StorageType.Memory)).generate()
+const axiosInstance = pluginify(axios).use(new CachePlugin(StorageType.Memory)).generate()
 ```
 StorageType 有三个可选值: MemoryStorage, LocalStorage, SessionStorage
 - 当使用 LocalStorage, SessionStorage 时，会默认在存储中加上前缀：`axios-cache:`
@@ -32,7 +32,7 @@ import { CachePlugin, StorageType, Options } from '@axios-plugin/cache'
 const options: Options = { cloneData: false, cleanupInterval: 36000, maxEntries: 300 }
 
 axiosInstance = 
-  pluginify(axios.create() as AxiosStatic).use(new CachePlugin(StorageType.MemoryStorage, options)).generate()
+  pluginify(axios).use(new CachePlugin(StorageType.MemoryStorage, options)).generate()
 ```
 
 **参数**

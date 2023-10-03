@@ -1,6 +1,5 @@
-import axios, { AxiosStatic } from 'axios'
+import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
-// @ts-ignore
 import { pluginify } from "@axios-plugin/core";
 import { TokenPlugin } from "../src/index"
 
@@ -14,7 +13,7 @@ describe('token plugin', () => {
       return [200, { data: 'mock data' }];
     });
 
-    const instance = pluginify(axios.create() as AxiosStatic).use(new TokenPlugin(token)).generate();
+    const instance = pluginify(axios).use(new TokenPlugin(token)).generate();
     const res = await instance.get('/api/data')
     expect(res.data).toEqual({ data: 'mock data' });
   })

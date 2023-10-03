@@ -17,7 +17,7 @@ new CachePlugin(type, options)
 ### Web Storage API
 ```js
 import { CachePlugin, StorageType } from '@axios-plugin/cache'
-const axiosInstance = pluginify(axios.create() as AxiosStatic)
+const axiosInstance = pluginify(axios)
                         .use(new CachePlugin(StorageType.Memory))
                         .generate()
 ```
@@ -37,7 +37,7 @@ const options: Options = {
   maxEntries: 300 
 }
 
-axiosInstance = pluginify(axios.create() as AxiosStatic)
+axiosInstance = pluginify(axios)
                   .use(new CachePlugin(StorageType.MemoryStorage, options))
                   .generate()
 ```

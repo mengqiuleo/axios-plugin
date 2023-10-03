@@ -12,7 +12,7 @@ yarn add @axios-plugin/retry
 import { RetryPlugin } from '@axios-plugin/retry'
 
 axiosInstance = 
-  pluginify(axios.create() as AxiosStatic).use(new RetryPlugin({ retries: 2 }).generate()
+  pluginify(axios).use(new RetryPlugin({ retries: 2 }).generate()
 ```
 参数可选，默认情况下会重试三次
 

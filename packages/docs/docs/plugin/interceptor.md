@@ -24,7 +24,7 @@ import {
   InterceptorPlugin, 
   InterceptorPluginOptions 
 } from "@axios-plugin/interceptor"
-const instance = pluginify(axios.create() as AxiosStatic)
+const instance = pluginify(axios)
                     .use(new InterceptorPlugin(options))
                     .generate()
 

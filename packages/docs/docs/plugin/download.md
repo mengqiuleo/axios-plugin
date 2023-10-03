@@ -16,7 +16,7 @@ yarn add @axios-plugin/download
 ## 使用
 ```js
 import { DownLoadPlugin } from '@axios-plugin/download'
-const axiosInstance = pluginify(axios.create() as AxiosStatic)
+const axiosInstance = pluginify(axios)
                         .use(new DownLoadPlugin("filename")).generate()
 ```
 

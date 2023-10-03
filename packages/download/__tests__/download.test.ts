@@ -1,9 +1,9 @@
-// @ts-ignore
 import { JSDOM } from 'jsdom';
 import axios, { AxiosInstance } from 'axios';
 import { DownLoadPlugin } from '../src/index';
 
 const jsdom = new JSDOM();
+
 //@ts-ignore
 (global as any).document = jsdom.window.document;
 //@ts-ignore

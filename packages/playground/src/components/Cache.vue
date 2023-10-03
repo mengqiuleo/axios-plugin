@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { pluginify } from '@axios-plugin/core'
 import { CachePlugin, StorageType } from '@axios-plugin/cache'
-import axios, { AxiosStatic } from 'axios'
+import axios from 'axios'
 
-const axiosInstance = pluginify( axios.create() as AxiosStatic).use(new CachePlugin(StorageType.SessionStorage)).generate()
+const axiosInstance = pluginify( axios).use(new CachePlugin(StorageType.SessionStorage)).generate()
 await axiosInstance.get('http://localhost:3000/posts')
 
 await axiosInstance.get('http://localhost:3000/posts')

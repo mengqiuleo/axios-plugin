@@ -1,3 +1,4 @@
+//* 已废弃
 import { AxiosInstance } from "axios"
 
 let CACHES: any = {}
