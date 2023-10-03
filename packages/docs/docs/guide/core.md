@@ -81,8 +81,18 @@ const axiosInstance = axiosPluginify.use(new Plugin()).generate(true)
 
 插件是一个类, 可以提供数个生命周期钩子.
 
+插件的 TS 类型定义
+```ts
+export interface AxiosPlugin {
+  pluginName: string;
+  beforeCreate?: beforeCreateHook;
+  created?: createdHook;
+}
+```
+
 ```javascript
 class Plugin {
+  public pluginName = 'Plugin' //required
   // optional
   constructor() {}
 

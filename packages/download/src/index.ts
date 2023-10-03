@@ -2,6 +2,7 @@ import { AxiosPlugin } from "@axios-plugin/core";
 import { AxiosInstance } from 'axios';
 
 export class DownLoadPlugin implements AxiosPlugin {
+  public pluginName = 'DownLoadPlugin'
   constructor(public filename?: string){
     this.filename = filename || "filename"
   }

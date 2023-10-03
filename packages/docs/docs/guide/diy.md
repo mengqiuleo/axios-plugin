@@ -2,6 +2,15 @@
 
 自定义插件通过自定义Class
 
+插件的 TS 类型定义
+```ts
+export interface AxiosPlugin {
+  pluginName: string;
+  beforeCreate?: beforeCreateHook;
+  created?: createdHook;
+}
+```
+
 ## API
 
 ### PluginClass
@@ -9,7 +18,8 @@
 import axios from 'axios'
 import { pluginify } from "@axios-plugin/core"
 
-class Plugin {
+class Plugin implements AxiosPlugin {
+  public pluginName = 'Plugin' //必选，插件名，用于记录插件调用出错的情况
   // 可选
   constructor(pluginConfig) {
     this.pluginConfig = pluginConfig;
@@ -42,7 +52,8 @@ import axios from 'axios'
 import { pluginify } from "@axios-plugin/core"
 import MockAdapter from 'axios-mock-adapter'
 
-class MockAdapterPlugin {
+class MockAdapterPlugin implements AxiosPlugin {
+  public pluginName = 'MockAdapterPlugin' 
   created(axiosInstance) {
     const mock = new MockAdapter(axiosInstance)
 
@@ -65,7 +76,8 @@ axiosInstance.get('/users')
 import axios from 'axios'
 import { pluginify } from "@axios-plugin/core"
 
-class RequestWithToken {
+class RequestWithToken implements AxiosPlugin {
+  public pluginName = 'RequestWithToken' 
   constructor(token) {
     this.token = token
   }
@@ -76,7 +88,8 @@ class RequestWithToken {
   }
 }
 
-class ExtractResultPlugin {
+class ExtractResultPlugin implements AxiosPlugin {
+  public pluginName = 'ExtractResultPlugin' 
   created(axiosInstance) {
     axiosInstance.interceptors.response.use((response) => {
       if (response.status === 200) {

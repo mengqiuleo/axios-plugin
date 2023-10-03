@@ -7,6 +7,7 @@ export interface TimeoutPluginOptions {
 
 export class TimeoutPlugin implements AxiosPlugin {
   public options: TimeoutPluginOptions
+  public pluginName = 'TimeoutPlugin'
   constructor(options?: TimeoutPluginOptions) {
     this.options = options || { timeout: 2000 }
   }

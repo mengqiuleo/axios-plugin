@@ -88,6 +88,9 @@
 
 该问题需要改进...(已放入TODO)
 
+进度更新: 目前对插件调用出错的情况，向外抛错，插件调用流程终止
+![error](../public/error.jpg)
+
 ## 技术栈
 - TypeScript
 - Jest

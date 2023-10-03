@@ -24,6 +24,7 @@ const defaultOptions: NetworkError = {
 }
 
 export class InterceptorPlugin implements AxiosPlugin {
+  public pluginName = 'InterceptorPlugin'
   public options: InterceptorPluginOptions
   constructor(options?: InterceptorPluginOptions) {
     this.options = { ...defaultOptions, ...options }

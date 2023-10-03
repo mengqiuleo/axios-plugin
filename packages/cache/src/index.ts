@@ -25,6 +25,8 @@ export enum StorageType {
 
 
 export class CachePlugin implements AxiosPlugin {
+  public pluginName = 'CachePlugin'
+
   constructor(public memory: StorageType, public options?: Options) {
     this.memory = memory
     this.options = Object.assign({

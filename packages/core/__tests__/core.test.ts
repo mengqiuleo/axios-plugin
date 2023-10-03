@@ -29,6 +29,7 @@ describe('core test', () => {
 
     class Plugin implements AxiosPlugin {
       public pluginConfig:any = undefined
+      public pluginName = 'plugin'
       // 可选
       constructor(pluginConfig?: any) {
         this.pluginConfig = pluginConfig;
@@ -63,6 +64,7 @@ describe('core test', () => {
 
     class Plugin implements AxiosPlugin {
       public pluginConfig:any = undefined
+      public pluginName = 'plugin'
       // 可选
       constructor(pluginConfig?: any) {
         this.pluginConfig = pluginConfig;
@@ -97,5 +99,23 @@ describe('core test', () => {
     expect(res1.data.users).toEqual([{ id: 1, name: "John Smith" }])
     const res2 = await axiosInstance2.get('/info')
     expect(res2.data.users).toEqual([{ id: 1, name: "John Smith" }])
+  })
+
+  test('error use', () => {
+    class Plugin implements AxiosPlugin {
+      public pluginConfig:any = undefined
+      public pluginName = 'MessagePlugin'
+      // 可选
+      constructor(pluginConfig?: any) {
+        this.pluginConfig = pluginConfig;
+      }
+    
+      // 可选 axios 实例化后创建
+      created(axiosInstance: AxiosInstance, axiosConfig: AxiosRequestConfig) {
+        throw new Error("Message")
+      }
+    }
+    const axiosInstance = pluginify(axios).use(new Plugin()).generate();
+    console.log(axiosInstance)
   })
 })

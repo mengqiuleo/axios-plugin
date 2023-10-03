@@ -51,7 +51,8 @@ interface ThrottleOption {
 }
 
 export class ThrottlePlugin implements AxiosPlugin {
-  maxTime
+  public maxTime
+  public pluginName = 'ThrottlePlugin'
   constructor(public options?: ThrottleOption){
     this.maxTime = options.maxTime || 500 //默认 500ms
   }

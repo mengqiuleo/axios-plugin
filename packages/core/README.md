@@ -15,12 +15,22 @@ yarn add @axios-plugin/core
 ## 自定义插件
 自定义插件通过自定义Class, 插件是一个类, 可以提供数个生命周期钩子.
 
+插件的 TS 类型定义
+```ts
+export interface AxiosPlugin {
+  pluginName: string;
+  beforeCreate?: beforeCreateHook;
+  created?: createdHook;
+}
+```
+
 ### PluginClass
 ```javascript
 import axios from 'axios'
 import { pluginify } from "@axios-plugin/core"
 
 class Plugin {
+  public pluginName = 'plugin' //必选，插件名，用于记录插件调用出错的情况
   // 可选
   constructor(pluginConfig) {
     this.pluginConfig = pluginConfig;
@@ -53,6 +63,7 @@ import { pluginify } from "@axios-plugin/core"
 import MockAdapter from 'axios-mock-adapter'
 
 class MockAdapterPlugin {
+  public pluginName = 'MockAdapterPlugin'
   created(axiosInstance) {
     const mock = new MockAdapter(axiosInstance)
 
@@ -76,6 +87,7 @@ import axios from 'axios'
 import { pluginify } from "@axios-plugin/core"
 
 class RequestWithToken {
+  public pluginName = 'RequestWithToken'
   constructor(token) {
     this.token = token
   }
@@ -87,6 +99,7 @@ class RequestWithToken {
 }
 
 class ExtractResultPlugin {
+  public pluginName = 'ExtractResultPlugin'
   created(axiosInstance) {
     axiosInstance.interceptors.response.use((response) => {
       if (response.status === 200) {
@@ -172,8 +185,10 @@ const axiosInstance = axiosPluginify.use(new Plugin()).generate(true)
 
 插件是一个类, 可以提供数个生命周期钩子.
 
+
 ```javascript
 class Plugin {
+  public pluginName = 'Plugin' //required
   // optional
   constructor() {}
 
@@ -215,6 +230,8 @@ class Plugin {
 这里对自定义插件的要求很低，只要编写的class类中含有 beforeCreate 或者 created 函数就OK，至于在函数内部做事情都不做要求，最后在统一调用时，依次取出所有的插件函数执行。
 
 该问题需要改进...(已放入TODO)
+
+进度更新: 目前对插件调用出错的情况，向外抛错，插件调用流程终止
 
 
 ## 鸣谢

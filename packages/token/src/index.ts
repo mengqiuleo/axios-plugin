@@ -2,6 +2,7 @@ import { AxiosPlugin } from "@axios-plugin/core";
 import { AxiosInstance } from 'axios';
 
 export class TokenPlugin implements AxiosPlugin {
+  public pluginName = 'TokenPlugin'
   constructor(public token: string){
     
   }
