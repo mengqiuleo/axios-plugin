@@ -1,5 +1,4 @@
-// @ts-ignore
-import { AxiosPlugin, pluginify } from "@axios-plugin/core";
+import { AxiosPlugin } from "@axios-plugin/core";
 import { AxiosInstance } from 'axios';
 
 export interface InterceptorPluginOptions {
@@ -30,9 +29,8 @@ export class InterceptorPlugin implements AxiosPlugin {
     this.options = { ...defaultOptions, ...options }
   }
 
-  // @ts-ignore
   created(axiosInstance: AxiosInstance) {
-    // @ts-ignore
+
     axiosInstance.interceptors.response.use(
       (response) => response,
       (err) => {

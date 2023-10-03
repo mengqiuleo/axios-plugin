@@ -14,38 +14,53 @@ yarn add @axios-plugin/core
 ## API
 ### pluginify
 
-#### constructor
 
 ```javascript
-pluginify(axios.create())
+pluginify(axios)
+
+pluginify(axios, config);
+// config 的 TS 类型为 AxiosRequestConfig
 ```
+config 具体内容可参考：https://axios-http.com/zh/docs/req_config
+
+### use
 
 ```javascript
-pluginify(axios.create(), {
-  // 交由 axios.create() 所使用的配置, 可以被插件重写
-});
-```
-
-#### use
-
-```javascript
-const axiosPluginify = pluginify(axios.create())
+const axiosPluginify = pluginify(axios)
 
 axiosPluginify.use(new Plugin(), new Plugin(), new Plugin())
-```
 
-or
+//or
 
-```javascript
 axiosPluginify.use(new Plugin()).use(new Plugin()).use(new Plugin())
 ```
 
-#### generate
-
-创建 `axios` 实例并结合 `use` 方法所给定的插件.
+### demo
 
 ```javascript
-const axiosPluginify = pluginify(axios.create())
+//1. axiosStatic add config
+const config = {
+  baseURL: '/users',
+  timeout: 5000
+}
+const axiosInstance1 = pluginify(axios, config).use(new Plugin(), new Plugin()).generate();
+const axiosInstance2 = pluginify(axios).use(new Plugin()).use(new Plugin()).generate();
+
+//2. AxiosInstance add config
+axiosInstance2.defaults.baseURL = '/users'
+axiosInstance2.defaults.timeout = 5000
+
+const res1 = await axiosInstance1.get('/info')
+const res2 = await axiosInstance2.get('/info')
+```
+
+
+### generate
+
+创建 `axios` 实例并调用 `use` 方法所给定的插件.
+
+```javascript
+const axiosPluginify = pluginify(axios)
 
 const axiosInstance = axiosPluginify.use(new Plugin()).generate()
 ```
@@ -53,18 +68,18 @@ const axiosInstance = axiosPluginify.use(new Plugin()).generate()
 通过向 `generate` 传入 `true` 表示生成 `axiosInstance` 后销毁 `pluginify` 内部保存的引用, 避免内存泄漏.
 
 ```javascript
-const axiosPluginify = pluginify(axios.create());
+const axiosPluginify = pluginify(axios);
 
 const axiosInstance = axiosPluginify.use(new Plugin()).generate(true)
 ```
 
-#### destroy
+### destroy
 
 用于销毁 `pluginify` 内部保存的引用, 可以通过 `generate(true)` 触发.
 
 ### plugin
 
-插件是一个类(也可以是一个构造函数), 可以提供数个生命周期钩子.
+插件是一个类, 可以提供数个生命周期钩子.
 
 ```javascript
 class Plugin {
@@ -78,3 +93,5 @@ class Plugin {
   created(axiosInstance, axiosRequestConfig) {}
 }
 ```
+
+这里的 axiosInstance 代表 创建出的 axios 实例，axiosStatic 代表 axios 本身

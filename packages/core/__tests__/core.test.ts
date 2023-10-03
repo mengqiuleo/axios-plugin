@@ -4,7 +4,7 @@ import { pluginify, AxiosPlugin } from '../src/index'
 
 const mock = new MockAdapter(axios)
 
-mock.onGet('/users').reply(200, {
+mock.onGet('/users/info').reply(200, {
   users: [{ id: 1, name: "John Smith" }]
 })
 
@@ -14,14 +14,14 @@ describe('core test', () => {
       baseURL: ''
     })
   
-    const res = await axiosStatic.get('/users')
+    const res = await axiosStatic.get('/users/info')
     expect(res.data.users).toEqual([{ id: 1, name: "John Smith" }])
   })
 
   test('pluginify basic test', async () => {
     const axiosInstance = pluginify(axios).generate();
   
-    const res = await axiosInstance.get('/users')
+    const res = await axiosInstance.get('/users/info')
     expect(res.data.users).toEqual([{ id: 1, name: "John Smith" }])
   })
 
@@ -48,9 +48,14 @@ describe('core test', () => {
       }
     }
 
-    const axiosInstance = pluginify(axios).use(new Plugin()).generate();
+    //axiosStatic add config
+    const config = {
+      baseURL: '/users',
+      timeout: 5000
+    }
+    const axiosInstance = pluginify(axios, config).use(new Plugin()).generate();
   
-    const res = await axiosInstance.get('/users')
+    const res = await axiosInstance.get('/info')
     expect(res.data.users).toEqual([{ id: 1, name: "John Smith" }])
   })
 
@@ -77,12 +82,20 @@ describe('core test', () => {
       }
     }
 
-    const axiosInstance1 = pluginify(axios).use(new Plugin(), new Plugin(), new Plugin()).generate();
+    //axiosStatic add config
+    const config = {
+      baseURL: '/users',
+      timeout: 5000
+    }
+    const axiosInstance1 = pluginify(axios, config).use(new Plugin(), new Plugin(), new Plugin()).generate();
     const axiosInstance2 = pluginify(axios).use(new Plugin()).use(new Plugin()).use(new Plugin()).generate();
+    //AxiosInstance add config
+    axiosInstance2.defaults.baseURL = '/users'
+    axiosInstance2.defaults.timeout = 5000
   
-    const res1 = await axiosInstance1.get('/users')
+    const res1 = await axiosInstance1.get('/info')
     expect(res1.data.users).toEqual([{ id: 1, name: "John Smith" }])
-    const res2 = await axiosInstance2.get('/users')
+    const res2 = await axiosInstance2.get('/info')
     expect(res2.data.users).toEqual([{ id: 1, name: "John Smith" }])
   })
 })

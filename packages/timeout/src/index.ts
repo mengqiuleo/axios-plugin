@@ -1,5 +1,4 @@
-// @ts-ignore
-import { AxiosPlugin, pluginify } from "@axios-plugin/core";
+import { AxiosPlugin } from "@axios-plugin/core";
 import { AxiosInstance, AxiosRequestConfig } from 'axios';
 
 export interface TimeoutPluginOptions {
@@ -18,7 +17,6 @@ export class TimeoutPlugin implements AxiosPlugin {
     }
   }
 
-  // @ts-ignore
   created(axiosInstance: AxiosInstance) {
     if (this.options.timeout != null) {
       axiosInstance.interceptors.response.use(

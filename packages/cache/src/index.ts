@@ -1,4 +1,3 @@
-// @ts-ignore
 import { AxiosPlugin } from "@axios-plugin/core"
 import { AxiosRequestConfig, AxiosInstance } from 'axios'
 import { setupCache, buildMemoryStorage, buildWebStorage } from 'axios-cache-interceptor'

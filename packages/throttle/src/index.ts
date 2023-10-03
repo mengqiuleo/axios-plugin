@@ -1,4 +1,3 @@
-// @ts-ignore
 import { AxiosPlugin } from "@axios-plugin/core"
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios"
 
