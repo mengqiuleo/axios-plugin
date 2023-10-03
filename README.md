@@ -136,33 +136,46 @@ axiosInstance.get('/users')
 ## API
 ### pluginify
 
-#### constructor
-
 ```javascript
 pluginify(axios)
-```
 
-```javascript
-pluginify(axios, {
-  // 交由 axios.create() 所使用的配置, 可以被插件重写
-});
+pluginify(axios, config);
+// config 的 TS 类型为 AxiosRequestConfig
 ```
+config 具体内容可参考：https://axios-http.com/zh/docs/req_config
 
-#### use
+### use
 
 ```javascript
 const axiosPluginify = pluginify(axios)
 
 axiosPluginify.use(new Plugin(), new Plugin(), new Plugin())
-```
 
-or
+//or
 
-```javascript
 axiosPluginify.use(new Plugin()).use(new Plugin()).use(new Plugin())
 ```
 
-#### generate
+### demo
+
+```javascript
+//1. axiosStatic add config
+const config = {
+  baseURL: '/users',
+  timeout: 5000
+}
+const axiosInstance1 = pluginify(axios, config).use(new Plugin(), new Plugin()).generate();
+const axiosInstance2 = pluginify(axios).use(new Plugin()).use(new Plugin()).generate();
+
+//2. AxiosInstance add config
+axiosInstance2.defaults.baseURL = '/users'
+axiosInstance2.defaults.timeout = 5000
+
+const res1 = await axiosInstance1.get('/info')
+const res2 = await axiosInstance2.get('/info')
+```
+
+### generate
 
 创建 `axios` 实例并结合 `use` 方法所给定的插件.
 
@@ -180,7 +193,7 @@ const axiosPluginify = pluginify(axios);
 const axiosInstance = axiosPluginify.use(new Plugin()).generate(true)
 ```
 
-#### destroy
+### destroy
 
 用于销毁 `pluginify` 内部保存的引用, 可以通过 `generate(true)` 触发.
 
@@ -200,15 +213,12 @@ class Plugin {
   created(axiosInstance, axiosRequestConfig) {}
 }
 ```
+这里的 axiosInstance 代表 创建出的 axios 实例，axiosStatic 代表 axios 本身
 
 ## TODO
--  处理 ts 类型警告，而不是使用 @ts-ignore
--  支持可更换请求库，eg: fetch、xhr
--  开发自定义Plugin脚手架模板
--  增强拦截器调度
-     -  处理拦截器失败的情况
-     -  参考webpack插件机制tapable
-     -  在插件中传递上下文ctx
+-  处理拦截器失败的情况(真的需要吗？该插件内部仍然会调用 axios 或 instance 上的 interceptors.response, 而 axios 内部对拦截器的调用做了 try catch 处理)
+-  拦截器的中断(一次面试问到了插件的中断, 感觉这里并不需要，但还是记录一下...这里在封装时对于无法调用的插件自动忽略, 是否需要改成向外抛错并中断插件注册)
+-  参考webpack插件机制tapable(是否真的需要改成调用tapable的方式, 目前已经实现了插件的注册和调用)
 
 ## FAQ
 
@@ -227,6 +237,12 @@ class Plugin {
 如果你在这些钩子函数中修改了传入钩子的参数, 则需要考虑这些插件在后续 `generate` 调用的时候的逻辑.
 
 一个更加简单的方式是复用生产出的 `axios` 实例, 而不是多次调用 `generate` 方法.
+
+### 遇到不正确的插件
+
+即插件的中断, 这里在封装时对于无法调用的插件自动忽略, 是否需要改成向外抛错并中断插件注册
+
+该问题需要改进...(已放入TODO)
 
 
 ## 鸣谢
