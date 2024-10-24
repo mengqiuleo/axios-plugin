@@ -1,5 +1,5 @@
 {
-  "name": "root",
+  "name": "axios-plugin",
   "private": true,
   "devDependencies": {
     "@babel/core": "^7.22.1",
@@ -16,7 +16,6 @@
     "typescript": "^5.6.3"
   },
   "scripts": {
-    "build": "lerna run build",
     "test": "jest"
   }
 }
