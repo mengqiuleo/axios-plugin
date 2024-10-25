@@ -1,10 +1,8 @@
-import { AxiosPlugin } from "@axios-plugin/core"
 import { AxiosInstance } from 'axios'
 
-export type RetryOptions = {
-  times?: number
-  delay?: number
-};
+import { AxiosPlugin } from "@axios-plugin/core"
+
+import type { RetryOptions } from "./interface"
 
 export class RetryPlugin implements AxiosPlugin {
   public pluginName = 'RetryPlugin'

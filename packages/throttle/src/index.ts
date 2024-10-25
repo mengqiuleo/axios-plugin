@@ -1,21 +1,16 @@
-import { AxiosPlugin } from "@axios-plugin/core"
 import { AxiosInstance, AxiosRequestConfig } from "axios"
 import { LRUCache } from "lru-cache"
 
-export interface ThrottleOption {
-  maxTime: number
-}
+import { AxiosPlugin } from "@axios-plugin/core"
 
-interface RecordedCache {
-	timestamp: number
-};
+import type { ThrottleOptions } from "./interface"
 
 export class ThrottlePlugin implements AxiosPlugin {
   public maxTime
-  public cache = new LRUCache<string, RecordedCache>({ max: 10 })
+  public cache = new LRUCache<string, { timestamp: number }>({ max: 10 })
   public pluginName = 'ThrottlePlugin'
 
-  constructor(public options?: ThrottleOption){
+  constructor(public options?: ThrottleOptions){
     this.maxTime = options.maxTime || 500 //默认 500ms
   }
 
