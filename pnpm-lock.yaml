@@ -54,8 +54,8 @@ importers:
   packages/retry:
     dependencies:
       '@axios-plugin/core':
-        specifier: '*'
-        version: 0.0.2
+        specifier: workspace:*
+        version: link:../core
       axios:
         specifier: '*'
         version: 1.7.7
@@ -63,20 +63,20 @@ importers:
   packages/throttle:
     dependencies:
       '@axios-plugin/core':
-        specifier: '*'
-        version: 0.0.2
+        specifier: workspace:*
+        version: link:../core
       axios:
         specifier: '*'
         version: 1.7.7
+      lru-cache:
+        specifier: ^11.0.1
+        version: 11.0.1
 
 packages:
 
   '@ampproject/remapping@2.3.0':
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
     engines: {node: '>=6.0.0'}
-
-  '@axios-plugin/core@0.0.2':
-    resolution: {integrity: sha512-tFrqaHwQAZwXIKyCeeQHetEHVbVgrqs7SBeThFE0fSeQLySU6a2M+oBXMqQTOIbVhDGwkFoGRJIdUscefRvlKw==}
 
   '@babel/code-frame@7.25.9':
     resolution: {integrity: sha512-z88xeGxnzehn2sqZ8UdGQEvYErF1odv2CftxInpSYJt6uHuPe9YjahKZITGs3l5LeI9d2ROG+obuDAoSlqbNfQ==}
@@ -1426,6 +1426,10 @@ packages:
   lodash.memoize@4.1.2:
     resolution: {integrity: sha512-t7j+NzmgnQzTAYXcsHYLgimltOV1MXHtlOWf6GjL9Kj8GK5FInw5JotxvbOs+IvV1/Dzo04/fCGfLVs7aXb4Ag==}
 
+  lru-cache@11.0.1:
+    resolution: {integrity: sha512-CgeuL5uom6j/ZVrg7G/+1IXqRY8JXX4Hghfy5YE0EhoYQWvndP1kufu58cmZLNIDKnRhZrXfdS9urVWx98AipQ==}
+    engines: {node: 20 || >=22}
+
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
 
@@ -1837,12 +1841,6 @@ snapshots:
     dependencies:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
-
-  '@axios-plugin/core@0.0.2':
-    dependencies:
-      axios: 1.7.7
-    transitivePeerDependencies:
-      - debug
 
   '@babel/code-frame@7.25.9':
     dependencies:
@@ -3637,6 +3635,8 @@ snapshots:
   lodash.debounce@4.0.8: {}
 
   lodash.memoize@4.1.2: {}
+
+  lru-cache@11.0.1: {}
 
   lru-cache@5.1.1:
     dependencies:

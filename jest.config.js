@@ -1,7 +1,6 @@
 const path = require('path')
 const modulePathMap = {
-  '@axios-plugin/core': './node_modules/@axios-plugin/core/src/index.ts',
-  '@axios-plugin/timeout': './node_modules/@axios-plugin/timeout/src/index.ts',
+  '@axios-plugin/core': 'packages/core/src/index.ts',
   // 其他模块
 };
 
@@ -10,9 +9,11 @@ module.exports = {
     '^.+\\.[tj]s$': 'ts-jest',
   },
   moduleNameMapper: Object.fromEntries(
-    Object.entries(modulePathMap).map(([moduleName, modulePath]) => [
-      `^${moduleName}$`,
-      path.resolve(__dirname, modulePath),
-    ])
+    Object.entries(modulePathMap).map(([moduleName, modulePath]) => {
+      return [
+        `^${moduleName}$`,
+        path.resolve(__dirname, modulePath),
+      ]
+    })
   )
 }

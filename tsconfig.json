@@ -20,8 +20,16 @@
       "ESNext.AsyncIterable",
       "DOM"
     ],
-    "types": ["jest"]
+    "types": ["jest"],
+    "paths": {
+      "@axios-plugin/*": ["packages/*/src"],
+    },
   },
+  "include": [
+    "packages/*/src",
+    "packages/*/__tests__",
+    "scripts/*",
+  ],
   "exclude": [
     "node_modules",
     "dist"

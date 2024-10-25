@@ -27,7 +27,7 @@
     "url": "https://github.com/mengqiuleo/axios-plugin/issues"
   },
   "dependencies": {
-    "@axios-plugin/core": "*"
+    "@axios-plugin/core": "workspace:*"
   },
   "peerDependencies": {
     "axios": "*"
