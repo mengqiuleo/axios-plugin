@@ -1,6 +1,7 @@
 {
   "name": "axios-plugin",
   "private": true,
+  "preinstall": "npx only-allow pnpm",
   "devDependencies": {
     "@babel/core": "^7.22.1",
     "@babel/preset-env": "^7.22.2",

@@ -11,7 +11,7 @@ describe('retry plugin', () => {
     mock = new MockAdapter(axios)
 
     axiosInstance = 
-      pluginify(axios).use(new RetryPlugin({ retries: 2 })).generate()
+      pluginify(axios).use(new RetryPlugin({ times: 2 })).generate()
   })
 
   afterEach(() => {
@@ -21,10 +21,10 @@ describe('retry plugin', () => {
   it('retry test', async () => {
     const path = '/data'
 
-    mock.onGet(path).networkError();
+    mock.onGet(path).networkError()
 
-    await expect(axiosInstance.get(path)).rejects.toThrow();
-    expect(mock.history.get.length).toBe(3);
+    await expect(axiosInstance.get(path)).rejects.toThrow()
+    expect(mock.history.get.length).toBe(3)
 
   })
 })

@@ -21,11 +21,11 @@ describe('throttle plugin', () => {
   it('throttle test', async () => {
     const path = '/data'
 
-    mock.onGet(path).reply(200, { data: 'success' });
+    mock.onGet(path).reply(200, { data: 'success' })
 
     const res = await axiosInstance.get(path)
     console.log('res', res.data)
-    await expect(axiosInstance.get(path)).rejects.toThrow();
-    await expect(axiosInstance.get(path)).rejects.toThrow();
+    await expect(axiosInstance.get(path)).rejects.toThrow()
+    await expect(axiosInstance.get(path)).rejects.toThrow()
   })
 })

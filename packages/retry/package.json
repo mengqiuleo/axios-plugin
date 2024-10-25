@@ -1,13 +1,12 @@
 {
   "name": "@axios-plugin/retry",
-  "version": "0.0.5-alpha.0",
+  "version": "0.1.0",
   "description": "拦截失败的请求并在可能的情况下进行重试",
   "author": "mengqiuleo",
   "homepage": "https://github.com/mengqiuleo/axios-plugin#README",
   "license": "MIT",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
-  "types": "dist/index.d.ts",
+  "main": "src/index.ts",
+  "module": "src/index.ts",
   "keywords": [
     "axios",
     "axios-plugin",
@@ -16,6 +15,11 @@
   "files": [
     "dist"
   ],
+  "exports": {
+    ".": {
+      "import": "./src/index.ts"
+    }
+  },
   "publishConfig": {
     "access": "public"
   },
