@@ -1,4 +1,4 @@
-import { AxiosInstance } from 'axios'
+import { AxiosInstance, AxiosRequestConfig } from 'axios'
 
 import { AxiosPlugin } from "@axios-plugin/core"
 
@@ -15,8 +15,8 @@ export class RetryPlugin implements AxiosPlugin {
     this.delayTime = options.delay || 300 // 默认 300ms 后重试
   }
 
-  created(axios: AxiosInstance) {
-    axios.interceptors.response.use(null, (err) => {
+  created(axiosInstance?: AxiosInstance, config?: AxiosRequestConfig) {
+    axiosInstance.interceptors.response.use(null, (err) => {
       let config = err.config
       if (!config || !this.times) return Promise.reject(err)
 
@@ -35,7 +35,7 @@ export class RetryPlugin implements AxiosPlugin {
 
       // 重新发起请求
       return delay.then(function () {
-        return axios(config)
+        return axiosInstance(config)
       })
     })
 
