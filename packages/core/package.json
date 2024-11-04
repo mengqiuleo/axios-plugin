@@ -1,6 +1,6 @@
 {
   "name": "@axios-plugin/core",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "@axios-plugin/core 是 @axios-plugin 的核心，它可以让 axios 成为基于插件的请求库",
   "main": "src/index.ts",
   "module": "src/index.ts",

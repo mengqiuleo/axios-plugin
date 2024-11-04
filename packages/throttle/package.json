@@ -1,6 +1,6 @@
 {
   "name": "@axios-plugin/throttle",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "限制 axios 发送请求的频率",
   "author": "mengqiuleo",
   "homepage": "https://github.com/mengqiuleo/axios-plugin#README",
