@@ -75,3 +75,5 @@ sourceFiles.forEach(sourceFile => {
 
   writeDefinedDataToReadme(definedData, readmePath)
 })
+
+console.log('generate api doc success🚀')

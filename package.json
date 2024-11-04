@@ -31,6 +31,7 @@
   "scripts": {
     "test": "jest --bail",
     "prepare": "husky install",
+    "lint:lint-staged": "lint-staged",
     "build": "node scripts/build.js",
     "change": "changeset add",
     "change:version": "changeset version",
@@ -38,16 +39,11 @@
     "release:only": "changeset publish",
     "gen-doc": "node scripts/generateApiDoc.js"
   },
-  "husky": {
-    "hooks": {
-      "lint-staged": "npx lint-staged"
-    }
-  },
   "lint-staged": {
     "packages/**/*.test.ts": [
       "pnpm run test"
     ],
-    "packages/**/README.md": [
+    "packages/*/README.md": [
       "pnpm run gen-doc"
     ]
   }
